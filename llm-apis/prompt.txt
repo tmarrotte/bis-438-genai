@@ -1,0 +1,83 @@
+
+SYSTEM INSTRUCTIONS:
+[INSTRUCTIONS - DELETE BEFORE RUNNING PROMPT: provide system instructions - what are you asking the LLM to do? e.g. You are a customer service agent. Your task is to do XYZ]
+
+
+COMPANY EXPENSE POLICIES:
+[INSTRUCTIONS - DELETE BEFORE RUNNING PROMPT: List all 8 expense categories with their maximum amounts and justification requirements from the notebook's policy table]
+
+
+DECISION RULES:
+[INSTRUCTIONS - DELETE BEFORE RUNNING PROMPT: Define the criteria for when to AUTO-APPROVE, FLAG FOR REVIEW, and REJECT expenses]
+
+
+PROCESSING INSTRUCTIONS:
+Analyze the expense description below and extract structured information. Output ONLY valid JSON with these exact fields:
+
+{
+  "category": "string - the expense category from policy",
+  "amount": number - dollar amount,
+  "date": "YYYY-MM-DD",
+  "vendor": "string - merchant name",
+  "business_justification": "string - business purpose",
+  "decision": "AUTO-APPROVE | FLAG FOR REVIEW | REJECT",
+  "reasoning": "string - explanation for the decision"
+}
+
+
+FEW-SHOT EXAMPLES:
+[INSTRUCTIONS - DELETE BEFORE RUNNING PROMPT: Fill in the JSON outputs below based on the input expense descriptions and the company policy. Your examples teach the AI - make sure they demonstrate different scenarios (approved, flagged, rejected) and categories!]
+
+Example 1:
+Input: "Took client Sarah Chen from Acme Corp to dinner at Morton's Steakhouse on March 15th. Discussed Q2 partnership expansion. Total with tip was $285."
+
+Output:
+[INSTRUCTIONS - DELETE BEFORE RUNNING PROMPT: Fill in the complete JSON objects based on this expense description and the policy above]
+{
+  "category": "",
+  "amount": ,
+  "date": "",
+  "vendor": "",
+  "business_justification": "",
+  "decision": "",
+  "reasoning": ""
+}
+
+Example 2:
+Input: "Flight to San Francisco for customer presentation, United Airlines, booked last minute on April 2nd, cost $1,650"
+
+Output:
+[TODO: Fill in the complete JSON object - note this expense exceeds the limit!]
+{
+  "category": "",
+  "amount": ,
+  "date": "",
+  "vendor": "",
+  "business_justification": "",
+  "decision": "",
+  "reasoning": ""
+}
+
+
+Example 3:
+Input: "Purchased office supplies from Staples - printer paper, pens, notebooks. March 28, total was $45."
+
+Output:
+{
+  "category": "",
+  "amount": ,
+  "date": "",
+  "vendor": "",
+  "business_justification": "",
+  "decision": "",
+  "reasoning": ""
+}
+
+
+---
+[INSTRUCTIONS - DELETE BEFORE RUNNING PROMPT - This section (the input) is automatically populated by the notebook]
+
+Now analyze this expense:
+Input: "{EXPENSE_DESCRIPTION}"
+
+Output (JSON only, no additional text):

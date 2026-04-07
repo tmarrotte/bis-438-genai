@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Approval System - AI Demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Automated Expense Approval System</h1>
+            <p class="subtitle">Powered by AWS Bedrock and Claude 3 Haiku</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Upload Section -->
+            <section class="upload-section card">
+                <h2>Submit Expense Report</h2>
+                <p class="instruction">Enter your expense description below or select a sample expense to analyze.</p>
+                
+                <div class="form-group">
+                    <label for="expenseInput">Expense Description:</label>
+                    <textarea 
+                        id="expenseInput" 
+                        rows="6" 
+                        placeholder="Example: Had lunch meeting with client Jessica Rodriguez from DataTech Solutions at The Capital Grille yesterday (April 6th). We discussed their interest in our enterprise software package for Q3 deployment. Total bill came to $145 including tax and tip."
+                    ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="sampleSelect">Or select a sample expense:</label>
+                    <select id="sampleSelect">
+                        <option value="">-- Choose a sample --</option>
+                    </select>
+                </div>
+
+                <button id="analyzeBtn" class="btn btn-primary">
+                    <span class="btn-text">Analyze Expense</span>
+                    <span class="spinner" style="display: none;">⏳</span>
+                </button>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection" style="display: none;">
+                <!-- Analysis Result Card -->
+                <div class="card result-card">
+                    <h2>Analysis Result</h2>
+                    <div id="resultContent">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Token Usage Card -->
+                <div class="card token-card">
+                    <h2>Token Usage & Cost Analysis</h2>
+                    <div id="tokenContent">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Raw Response Card (Collapsed by default) -->
+                <div class="card raw-response-card">
+                    <h2 class="collapsible" id="rawResponseHeader">
+                        Raw API Response 
+                        <span class="toggle-icon">▼</span>
+                    </h2>
+                    <div id="rawResponseContent" style="display: none;">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Error Section -->
+            <section class="error-section card" id="errorSection" style="display: none;">
+                <h2>Error</h2>
+                <div id="errorContent" class="error-message">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <p>Educational Demo - BIS 438: Generative AI in Business</p>
+            <p class="note">This interactive web demo allows you to test the expense approval system through a user-friendly interface.</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
