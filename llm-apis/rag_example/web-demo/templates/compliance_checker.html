@@ -66,6 +66,7 @@ Example: Our facility emits 95 tons/year of sulfur dioxide from a coal-fired boi
                     <button class="sample" onclick="loadSample(1)">📋 Sample 1: New Source (SO2)</button>
                     <button class="sample" onclick="loadSample(2)">📋 Sample 2: HAP (Benzene)</button>
                     <button class="sample" onclick="loadSample(3)">📋 Sample 3: PSD Permit</button>
+                    <button class="sample" onclick="loadSample(4)" style="background:#f8d7da;color:#721c24;">🚨 Sample 4: Non-Compliant (No Controls/Permits)</button>
                 </div>
             </div>
             
@@ -109,7 +110,22 @@ Pollutants:
 - Particulate Matter (PM): 250 tons/year
 Status: Construction planned, not yet built
 
-Question: What preconstruction permits and Prevention of Significant Deterioration (PSD) requirements apply under Part C? Do we need a Title V operating permit?`
+Question: What preconstruction permits and Prevention of Significant Deterioration (PSD) requirements apply under Part C? Do we need a Title V operating permit?`,
+
+            4: `Facility: Riverside Chemical Plant, Gary, Indiana
+Operations: Chemical manufacturing and waste solvent incineration
+Pollutants Emitted:
+- Benzene: 25 tons/year (Hazardous Air Pollutant)
+- Vinyl Chloride: 15 tons/year (Hazardous Air Pollutant)
+- Hydrogen Chloride: 40 tons/year
+Aggregate HAP Emissions: 80 tons/year
+Control Technology: NONE — no emission control equipment of any kind installed
+Permit Status: No Title V operating permit, no preconstruction permit ever obtained
+Construction Date: 2018
+
+The facility has been operating continuously since 2018 without installing any air pollution control devices. We have never applied for or obtained any operating or construction permits. Our aggregate hazardous air pollutant emissions clearly exceed the major source thresholds.
+
+Question: Are we in compliance with the Clean Air Act?`
         };
         
         function loadSample(num) {
