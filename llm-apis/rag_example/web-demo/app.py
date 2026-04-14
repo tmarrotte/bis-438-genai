@@ -120,7 +120,35 @@ Provide compliance assessment as JSON."""
         llm_output = llm_output.split("```json")[1].split("```")[0].strip()
     elif "```" in llm_output:
         llm_output = llm_output.split("```")[1].split("```")[0].strip()
-    
+
+    # Sanitize: escape control characters that appear literally inside JSON string values.
+    # LLMs sometimes emit unescaped newlines/carriage returns inside strings, which
+    # causes json.loads to raise JSONDecodeError: Invalid control character.
+    sanitized = []
+    in_string = False
+    escaped = False
+    for ch in llm_output:
+        if escaped:
+            sanitized.append(ch)
+            escaped = False
+        elif ch == "\\" and in_string:
+            sanitized.append(ch)
+            escaped = True
+        elif ch == '"':
+            in_string = not in_string
+            sanitized.append(ch)
+        elif in_string and ord(ch) < 0x20:
+            if ch == "\n":
+                sanitized.append("\\n")
+            elif ch == "\r":
+                sanitized.append("\\r")
+            elif ch == "\t":
+                sanitized.append("\\t")
+            # discard other control characters
+        else:
+            sanitized.append(ch)
+    llm_output = "".join(sanitized)
+
     result = json.loads(llm_output)
     result["chunks"] = chunks
     result["sources"] = sources
